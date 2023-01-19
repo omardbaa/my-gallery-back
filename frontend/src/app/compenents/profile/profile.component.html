@@ -1,0 +1,22 @@
+<mat-card class="profile-card" *ngIf="currentUser; else loggedOut">
+  <mat-card-content class="border-top-input">
+    <div class="container">
+      <header class="jumbotron">
+        <h3>
+          <strong>{{ currentUser.username }}</strong>
+        </h3>
+      </header>
+      <p>
+        <strong>Email:</strong>
+        {{ currentUser.email }}
+      </p>
+      <strong>Roles:</strong>
+      <ul>
+        <li *ngFor="let role of currentUser.roles">
+          {{ role }}
+        </li>
+      </ul>
+    </div>
+  </mat-card-content>
+</mat-card>
+<ng-template #loggedOut> Please login. </ng-template>

@@ -12,11 +12,18 @@
     <artifactId>mygallery</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>mygallery</name>
+    <packaging>pom</packaging>
     <description>gallery project</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
+
+
 
     </properties>
+    <modules>
+    <module>frontend</module>
+    <module>backend</module>
+</modules>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

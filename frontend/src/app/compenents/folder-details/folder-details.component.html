@@ -1,0 +1,158 @@
+<head>
+  <link
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+    integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA="
+    crossorigin="anonymous"
+  />
+</head>
+
+<body>
+  <!-- <div class="col-sm-12">
+    <form (ngSubmit)="onSubmit()">
+      <label> Folder Id </label>
+      <div class="file-wrap">
+        <input
+          type="text"
+          id="folderId"
+          [(ngModel)]="folder.folderId"
+          name="folderId"
+          placeholder="folderId"
+        />
+      </div>
+
+      <label> File Id </label>
+      <div class="file-wrap" *ngFor="let file of allFiles">
+        <input
+          type="text"
+          id="id"
+          [(ngModel)]="file.id"
+          name="id"
+          placeholder="file Id"
+        />
+        <button
+          class="btn btn-success"
+          style="margin-left: 1.5em"
+          type="submit"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </form>
+  </div> -->
+
+  <div>
+    <section>
+      <div class="d-flex">
+        <input
+          [(ngModel)]="name"
+          [(ngModel)]="size"
+          [(ngModel)]="extension"
+          [(ngModel)]="folderName"
+          [(ngModel)]="id"
+          class="form-control me-6"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+      </div>
+
+      <div class="col-8">
+        <label class="btn btn-default p-0">
+          <input type="file" (change)="selectFile($event)" />
+        </label>
+      </div>
+
+      <div class="col-4">
+        <button
+          class="btn btn-block btn-success"
+          [disabled]="!selectedFiles"
+          (click)="upload(folder.folderId, folder.folderName)"
+        >
+          <i class="fa fa-plus"> </i> Upload
+        </button>
+      </div>
+
+      <div *ngIf="currentFile" class="progress my-3">
+        <div
+          class="progress-bar progress-bar-info progress-bar-striped"
+          role="progressbar"
+          attr.aria-valuenow="{{ progress }}"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          [ngStyle]="{ width: progress + '%' }"
+        >
+          {{ progress }}%
+        </div>
+      </div>
+
+      <div *ngIf="message" class="alert alert-secondary" role="alert">
+        {{ message }}
+      </div>
+    </section>
+
+    <section>
+      <div class="tab-pane active documents documents-panel">
+        <div
+          class="document {{ types[file.extension.toLowerCase()].class }}"
+          *ngFor="
+            let file of allFiles
+              | filter : name
+              | filter : size
+              | filter : extension
+              | filter : folderName
+              | paginate : { itemsPerPage: perPage, currentPage: p }
+          "
+          [ngClass]="'document ' + types[file.extension.toLowerCase()]?.class"
+        >
+          <a
+            class="document-body"
+            style="margin: 25px; margin-left: 90px; color: white"
+            (click)="fileDetails(file.id)"
+            role="button"
+          >
+            <i [ngClass]="types[file.extension.toLowerCase()]?.icon"></i>
+          </a>
+
+          <div class="document-footer">
+            <span class="document-name"> {{ file.name }} </span>
+
+            <div>
+              <div class="hover" style="margin-top: 15px">
+                <button
+                  mat-button
+                  role="button"
+                  (click)="deleteFile(file.id, folderId)"
+                >
+                  <mat-icon style="color: white">delete</mat-icon>
+                </button>
+
+                <button mat-button role="button" (click)="fileDetails(file.id)">
+                  <mat-icon style="color: white">info</mat-icon>
+                </button>
+
+                <a role="button" href="{{ file.url }}" class="file-download"
+                  ><i
+                    class="fa fa-download"
+                    style="margin-left: 20px; color: white"
+                  >
+                  </i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div style="margin-left: 100px">
+      <pagination-controls
+        class="myPagination"
+        (pageChange)="p = $event"
+      ></pagination-controls>
+    </div>
+  </div>
+</body>

@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="galloryBack" />
+        <module name="gallery-back" />
         <module name="mygallery" />
         <module name="smartDigiRH" />
       </profile>
@@ -15,6 +16,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="gallery-back" options="-parameters" />
       <module name="galloryBack" options="-parameters" />
       <module name="mygallery" options="-parameters" />
       <module name="smartDigiRH" options="-parameters" />

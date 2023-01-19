@@ -1,0 +1,40 @@
+<link
+  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+  rel="stylesheet"
+/>
+
+<div class="col-sm-12 new-folder">
+  <form (ngSubmit)="onSubmit()">
+    <label> Folder Name </label>
+    <div class="file-wrap">
+      <input
+        type="text"
+        id="folderName"
+        [(ngModel)]="folder.folderName"
+        name="folderName"
+        placeholder="folder name"
+      />
+      <button class="btn btn-success" style="margin-left: 1.5em" type="submit">
+        <mat-icon>create_new_folder</mat-icon>
+      </button>
+    </div>
+  </form>
+</div>
+
+<div class="col-sm-4">
+  <ul class="folders list-unstyled" *ngFor="let folder of folders">
+    <li>
+      <a role="button" (click)="folderDetails(folder.folderId)">
+        <i class="fa fa-folder">
+          {{ folder.folderName }}
+        </i>
+      </a>
+      <mat-icon
+        role="button"
+        (click)="deleteFolder(folder.folderId)"
+        class="icon-container"
+        >delete</mat-icon
+      >
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,50 @@
+.folders {
+  width: 100%;
+
+
+}
+
+.new-folder {
+  grid-area: 2.5em;
+}
+
+.file-wrap {
+
+  display: flex;
+
+
+
+}
+
+.list-unstyled .folders li {
+  font-size: 14px;
+  padding: 3px 4px 3px 12px;
+  display: inline-flex;
+}
+
+.folders li a {
+  text-decoration: none;
+  color: #4a4d56;
+}
+
+.folders li a i {
+  color: #5e6168;
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+
+
+
+
+
+.folders li .icon-container {
+  color: gray;
+  opacity: 13%;
+  padding: auto;
+}
+
+.folders li .icon-container:hover {
+  color: black;
+  opacity: 100%;
+}

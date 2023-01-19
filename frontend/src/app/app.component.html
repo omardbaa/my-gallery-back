@@ -1,0 +1,110 @@
+<head>
+  <meta charset="utf-8" />
+  <title>My Gallery</title>
+  <base href="/" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+  />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+</head>
+
+<body class="mat-typography">
+  <div class="container app">
+    <mat-toolbar>
+      <button
+        mat-icon-button
+        *ngIf="sidenav.mode === 'over'"
+        (click)="sidenav.toggle()"
+      >
+        <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+        <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+      </button>
+      <div role="button" routerLink="files" routerLinkActive="active">
+        My Gallery
+      </div>
+    </mat-toolbar>
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav="matSidenav">
+        <img
+          class="avatar mat-elevation-z8"
+          src="../assets/Images/profile-pic.png"
+          alt="this is profil pic"
+          *ngIf="isLoggedIn"
+        />
+
+        <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+          <li class="nav-item">
+            <a href="/profile" class="nav-link" routerLink="profile">{{
+              username
+            }}</a>
+          </li>
+          <li class="nav-item">
+            <a href class="nav-link" (click)="logout()">LogOut</a>
+          </li>
+        </ul>
+        <mat-divider *ngIf="isLoggedIn"></mat-divider>
+        <button
+          mat-button
+          class="menu-button"
+          routerLink="files"
+          routerLinkActive="active"
+          *ngIf="isLoggedIn"
+        >
+          <mat-icon>note</mat-icon>
+          <span>Files</span>
+        </button>
+        <mat-divider *ngIf="isLoggedIn"></mat-divider>
+        <button
+          mat-button
+          class="menu-button"
+          routerLink="folders"
+          routerLinkActive="active"
+          *ngIf="isLoggedIn"
+        >
+          <mat-icon>folder</mat-icon>
+          <span>Folders</span>
+        </button>
+
+        <mat-divider *ngIf="!isLoggedIn"></mat-divider>
+        <button
+          mat-button
+          class="menu-button"
+          routerLink="login"
+          routerLinkActive="active"
+          *ngIf="!isLoggedIn"
+        >
+          <mat-icon>login</mat-icon>
+          <span>lgoin</span>
+        </button>
+
+        <mat-divider *ngIf="!isLoggedIn"></mat-divider>
+        <button
+          mat-button
+          class="menu-button"
+          routerLink="register"
+          routerLinkActive="active"
+          *ngIf="!isLoggedIn"
+        >
+          <mat-icon>account_circle</mat-icon>
+          <span>register</span>
+        </button>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <div class="content mat-elevation-z8">
+          <router-outlet></router-outlet>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+</body>

@@ -1,0 +1,55 @@
+<div class="document display">
+  <div class="details">
+    <h1>Details:</h1>
+    <h4><mat-icon class="icon">desktop_windows</mat-icon> {{ file.name }}</h4>
+    <h4><mat-icon class="icon">desktop_windows</mat-icon> {{ file.type }}</h4>
+    <h4>
+      <mat-icon class="icon">desktop_windows</mat-icon> {{ file.extension }}
+    </h4>
+    <h4><mat-icon class="icon">desktop_windows</mat-icon> {{ file.size }}</h4>
+
+    <div style="margin-bottom: 25px; margin-top: 40%">
+      <h1>Tags:</h1>
+      <div *ngFor="let tag of tags" class="wraped">
+        <button class="bottun" (click)="filesOfTag(tag.id)">
+          {{ tag.tagName }}
+          <mat-icon
+            role="button"
+            (click)="deleteTag(file.id, tag.id)"
+            class="icon-container"
+            >clear</mat-icon
+          >
+        </button>
+      </div>
+    </div>
+
+    <form (submit)="addTagToFile()">
+      <div>
+        <label>
+          File ID:
+          <input
+            type="text"
+            [(ngModel)]="fileId"
+            name="fileId"
+            [value]="file.id"
+            id="fileId"
+          />
+        </label>
+      </div>
+
+      <label>
+        Tag ID:
+        <input type="text" [(ngModel)]="tagId" name="tagId" />
+      </label>
+      <button type="submit">Add Tag to File</button>
+    </form>
+  </div>
+
+  <div class="frame-body">
+    <h1>File viewer</h1>
+
+    <iframe [src]="file.url | safe" class="viewer"> </iframe>
+  </div>
+</div>
+
+<div></div>
